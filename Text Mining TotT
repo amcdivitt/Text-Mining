@@ -1,0 +1,46 @@
+```{r}
+Sys.setenv(NOAWT=TRUE)
+library(tm)
+mycorpus <-Corpus(DirSource("/Users/rikku8221/Desktop/Text Mining in R/tracts-for-the-times copy/"))
+```
+
+```{r}
+Sys.setenv(NOAWT=TRUE)
+library(tm)
+mycorpus <-Corpus(DirSource("/Users/rikku8221/Desktop/Text Mining in R/tracts-for-the-times copy/"))
+```
+
+```{r}
+mytdm <- TermDocumentMatrix(mycorpus)
+inspect(mytdm)
+```
+
+```{r}
+mydtm <- DocumentTermMatrix(mycorpus, control = list(weighting = weightTfIdf, stopwords = TRUE))
+inspect(mydtm)
+```
+
+```{r}
+findFreqTerms(mytdm, 5)
+findFreqTerms(mytdm, 10)
+findFreqTerms(mytdm, 25)
+findFreqTerms(mytdm, 50)
+findFreqTerms(mytdm, 75)
+findFreqTerms(mytdm, 100)
+findFreqTerms(mytdm, 300)
+findFreqTerms(mytdm, 500)
+```
+
+```{r}
+findAssocs(mytdm, 'sacrament', 0.20)
+findAssocs(mytdm, 'scholar', 0.20)
+findAssocs(mytdm, 'violent', 0.20)
+```
+
+```{r}
+mydf <- as.data.frame(inspect(mytdm))
+my.df.scale <- scale(mydf)
+d <- dist(my.df.scale,method="euclidean")
+fit <- hclust(d, method="ward.D")
+plot(fit)
+```
