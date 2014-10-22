@@ -12,12 +12,10 @@ mycorpus <-Corpus(DirSource("/Users/rikku8221/Desktop/Text Mining in R/tracts-fo
 
 ```{r}
 mytdm <- TermDocumentMatrix(mycorpus)
-inspect(mytdm)
 ```
 
 ```{r}
 mydtm <- DocumentTermMatrix(mycorpus, control = list(weighting = weightTfIdf, stopwords = TRUE))
-inspect(mydtm)
 ```
 
 ```{r}
